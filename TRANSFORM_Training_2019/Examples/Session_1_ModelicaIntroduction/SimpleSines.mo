@@ -3,13 +3,13 @@ model SimpleSines
 
   extends Modelica.Icons.Example;
 
-  Modelica.Blocks.Sources.Sine sine(amplitude=1, freqHz=1)
+  Modelica.Blocks.Sources.Sine sine(amplitude=1, f=1)
     annotation (Placement(transformation(extent={{-40,30},{-20,50}})));
   Modelica.Blocks.Math.Sum sum1(nin=3)
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
-  Modelica.Blocks.Sources.Sine sine1(amplitude=1, freqHz=1/10)
+  Modelica.Blocks.Sources.Sine sine1(amplitude=1, f=1/10)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Modelica.Blocks.Sources.Sine sine2(amplitude=1, freqHz=1/100)
+  Modelica.Blocks.Sources.Sine sine2(amplitude=1, f=1/100)
     annotation (Placement(transformation(extent={{-40,-50},{-20,-30}})));
 equation
   connect(sine2.y, sum1.u[1]) annotation (Line(points={{-19,-40},{-6,-40},{-6,

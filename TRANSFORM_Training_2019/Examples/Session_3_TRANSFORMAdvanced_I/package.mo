@@ -3,7 +3,7 @@ package Session_3_TRANSFORMAdvanced_I
 
   extends TRANSFORM.Icons.ExamplesPackage;
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   import SIadd = TRANSFORM.Units;
 
 

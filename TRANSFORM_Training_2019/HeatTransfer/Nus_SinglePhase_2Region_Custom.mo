@@ -2,18 +2,20 @@ within TRANSFORM_Training_2019.HeatTransfer;
 model Nus_SinglePhase_2Region_Custom "Specify Nus | Single Phase | Custom"
   extends
     TRANSFORM.Fluid.ClosureRelations.HeatTransfer.Models.DistributedPipe_1D_MultiTransferSurface.PartialSinglePhase;
-  input Modelica.SIunits.NusseltNumber[nHT,nSurfaces] Nus_lam={{4.36 for j in 1:
-      nSurfaces} for i in 1:nHT} "Laminar Nusselt number"
+  input Modelica.Units.SI.NusseltNumber[nHT,nSurfaces] Nus_lam={{4.36 for j in
+      1:nSurfaces} for i in 1:nHT} "Laminar Nusselt number"
     annotation (Dialog(group="Inputs"));
-  input Modelica.SIunits.NusseltNumber[nHT,nSurfaces] Nus_turb={{
+  input Modelica.Units.SI.NusseltNumber[nHT,nSurfaces] Nus_turb={{
       TRANSFORM.HeatAndMassTransfer.ClosureRelations.HeatTransfer.Functions.SinglePhase.InternalFlow.Nu_SiederTate(
-       Res[i], Prs[i], 0.9) for j in 1:nSurfaces} for i in 1:nHT}
-    "Turbulent Nusselt number" annotation (Dialog(group="Inputs"));
-  input Modelica.SIunits.Length[nHT,nSurfaces] L_char=transpose({dimensions
+      Res[i],
+      Prs[i],
+      0.9) for j in 1:nSurfaces} for i in 1:nHT} "Turbulent Nusselt number"
+    annotation (Dialog(group="Inputs"));
+  input Modelica.Units.SI.Length[nHT,nSurfaces] L_char=transpose({dimensions
       for i in 1:nSurfaces})
     "Characteristic dimension for calculation of alpha"
     annotation (Dialog(group="Inputs"));
-  input Modelica.SIunits.ThermalConductivity[nHT,nSurfaces] lambda=transpose({
+  input Modelica.Units.SI.ThermalConductivity[nHT,nSurfaces] lambda=transpose({
       mediaProps.lambda for i in 1:nSurfaces})
     "Thermal conductivity for calculation of alpha"
     annotation (Dialog(group="Inputs"));

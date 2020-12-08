@@ -2,16 +2,19 @@ within TRANSFORM_Training_2019.Examples.Session_1_ModelicaIntroduction;
 model NewtonCooling "Lumped cooling"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   parameter Boolean toggleNoise=true "=true to add noise to T_ambient";
-  parameter SI.Temperature T_start=SI.Conversions.from_degC(90) "Initial temperature";
+  parameter SI.Temperature T_start=Modelica.Units.Conversions.from_degC(90)
+    "Initial temperature";
   parameter SI.CoefficientOfHeatTransfer alpha=0.1 "Convection coefficient";
   parameter SI.Area surfaceArea=0.1 "Surface area";
   parameter SI.Mass m=100.0 "Thermal mass";
   parameter SI.SpecificHeatCapacity cp=1.2 "Specific heat capacity";
 
-  SI.Temperature T_ambient=SI.Conversions.from_degC(25) + 10*Modelica.Math.sin(time/(24*60*60)*2*Modelica.Constants.pi) "Ambient temperature";
+  SI.Temperature T_ambient=Modelica.Units.Conversions.from_degC(25) + 10*
+      Modelica.Math.sin(time/(24*60*60)*2*Modelica.Constants.pi)
+    "Ambient temperature";
   SI.Temperature T "Temperature";
   SI.Temperature T_effective "Temperature with noise";
 
