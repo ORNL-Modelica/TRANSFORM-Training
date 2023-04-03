@@ -1,7 +1,6 @@
 within TRANSFORM_Training_2019.HeatTransfer;
 model Nus_SinglePhase_2Region_Custom "Specify Nus | Single Phase | Custom"
-  extends
-    TRANSFORM.Fluid.ClosureRelations.HeatTransfer.Models.DistributedPipe_1D_MultiTransferSurface.PartialSinglePhase;
+  extends TRANSFORM.Fluid.ClosureRelations.HeatTransfer.Models.DistributedPipe_1D_MultiTransferSurface.PartialSinglePhase;
   input Modelica.Units.SI.NusseltNumber[nHT,nSurfaces] Nus_lam={{4.36 for j in
       1:nSurfaces} for i in 1:nHT} "Laminar Nusselt number"
     annotation (Dialog(group="Inputs"));

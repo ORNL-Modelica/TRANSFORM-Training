@@ -9,11 +9,11 @@ model FlowLoop_Step_4 "Add nuclear heating"
     T_a_start=323.15,
     m_flow_a_start=1,
     redeclare model Geometry =
-        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe
-        (dimension=2*0.0254, nV=4),
+        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe (
+         dimension=2*0.0254, nV=4),
     redeclare model InternalHeatGen =
-        TRANSFORM.Fluid.ClosureRelations.InternalVolumeHeatGeneration.Models.DistributedVolume_1D.GenericHeatGeneration
-        (Q_gen=kinetics.Q_total/4)) annotation (Placement(transformation(
+        TRANSFORM.Fluid.ClosureRelations.InternalVolumeHeatGeneration.Models.DistributedVolume_1D.GenericHeatGeneration (
+         Q_gen=kinetics.Q_total/4)) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-40,0})));
@@ -23,8 +23,8 @@ model FlowLoop_Step_4 "Add nuclear heating"
     T_a_start=323.15,
     m_flow_a_start=1,
     redeclare model Geometry =
-        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe
-        (dimension=2*0.0254, nV=4),
+        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe (
+         dimension=2*0.0254, nV=4),
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         TRANSFORM.Fluid.ClosureRelations.HeatTransfer.Models.DistributedPipe_1D_MultiTransferSurface.Nus_SinglePhase_2Region,

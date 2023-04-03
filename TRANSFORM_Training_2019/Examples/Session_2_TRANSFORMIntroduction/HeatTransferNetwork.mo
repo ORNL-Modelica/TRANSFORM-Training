@@ -10,15 +10,14 @@ model HeatTransferNetwork "Based on Todreas & Kazimi Problem 8-4"
     T_a1_start=973.15,
     exposeState_b1=true,
     redeclare model Geometry =
-        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Cylinder_1D_r
-        (
+        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Cylinder_1D_r (
         nR=20,
         r_inner=0,
         r_outer=cladding.geometry.r_inner - 230e-6,
         length_z=3),
     redeclare model InternalHeatModel =
-        TRANSFORM.HeatAndMassTransfer.DiscritizedModels.BaseClasses.Dimensions_1.VolumetricHeatGeneration
-        (q_ppp=44e3*fuel.geometry.length_z/fuel.geometry.V_total))
+        TRANSFORM.HeatAndMassTransfer.DiscritizedModels.BaseClasses.Dimensions_1.VolumetricHeatGeneration (
+         q_ppp=44e3*fuel.geometry.length_z/fuel.geometry.V_total))
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   TRANSFORM.HeatAndMassTransfer.Resistances.Heat.Cylinder gap(
     L=fuel.geometry.length_z,
@@ -32,8 +31,7 @@ model HeatTransferNetwork "Based on Todreas & Kazimi Problem 8-4"
     T_a1_start=573.15,
     exposeState_b1=true,
     redeclare model Geometry =
-        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Cylinder_1D_r
-        (
+        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Cylinder_1D_r (
         nR=8,
         r_inner=cladding.geometry.r_outer - 0.00086,
         r_outer=0.00626,

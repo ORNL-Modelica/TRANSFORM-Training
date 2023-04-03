@@ -11,13 +11,13 @@ model FlowLoop_Step_12 "Modify hotleg temperature with custom correlation"
     T_a_start=323.15,
     m_flow_a_start=1,
     redeclare model Geometry =
-        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe
-        (dimension=2*0.0254, nV=4),
+        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe (
+         dimension=2*0.0254, nV=4),
     use_HeatTransfer=true,
     redeclare model HeatTransfer = HeatTransfer.Nus_SinglePhase_2Region_Custom,
     redeclare model InternalTraceGen =
-        TRANSFORM.Fluid.ClosureRelations.InternalTraceGeneration.Models.DistributedVolume_Trace_1D.GenericTraceGeneration
-        (mC_gen={1e-4*kinetics.Q_total}),
+        TRANSFORM.Fluid.ClosureRelations.InternalTraceGeneration.Models.DistributedVolume_Trace_1D.GenericTraceGeneration (
+         mC_gen={1e-4*kinetics.Q_total}),
     showColors=true,
     val_min=40 + 273.15,
     val_max=100 + 273.15)           annotation (Placement(transformation(
@@ -30,17 +30,16 @@ model FlowLoop_Step_12 "Modify hotleg temperature with custom correlation"
     T_a_start=323.15,
     m_flow_a_start=1,
     redeclare model Geometry =
-        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe
-        (dimension=2*0.0254, nV=4),
+        TRANSFORM.Fluid.ClosureRelations.Geometry.Models.DistributedVolume_1D.StraightPipe (
+         dimension=2*0.0254, nV=4),
     use_HeatTransfer=true,
     redeclare model HeatTransfer =
         TRANSFORM.Fluid.ClosureRelations.HeatTransfer.Models.DistributedPipe_1D_MultiTransferSurface.Nus_SinglePhase_2Region,
     use_TraceMassTransfer=true,
     redeclare model TraceMassTransfer =
-        TRANSFORM.Fluid.ClosureRelations.MassTransfer.Models.DistributedPipe_TraceMass_1D_MultiTransferSurface.AlphasM
-        (redeclare model DiffusionCoeff =
-            TRANSFORM.Media.ClosureModels.MassDiffusionCoefficient.Models.GenericCoefficient
-            (                                                                                 D_ab0=1),
+        TRANSFORM.Fluid.ClosureRelations.MassTransfer.Models.DistributedPipe_TraceMass_1D_MultiTransferSurface.AlphasM (
+         redeclare model DiffusionCoeff =
+            TRANSFORM.Media.ClosureModels.MassDiffusionCoefficient.Models.GenericCoefficient (D_ab0=1),
           alphaM0={1000}),
     exposeState_a=false,
     exposeState_b=true,
@@ -96,16 +95,15 @@ model FlowLoop_Step_12 "Modify hotleg temperature with custom correlation"
     exposeState_b1=true,
     exposeState_b2=true,
     redeclare model Geometry =
-        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Plane_2D
-        (
+        TRANSFORM.HeatAndMassTransfer.ClosureRelations.Geometry.Models.Plane_2D (
         nX=3,
         nY=hotLeg.geometry.nV,
         length_x=0.5*0.0254,
         length_y=hotLeg.geometry.length,
         length_z=0.0254),
     redeclare model InternalHeatModel =
-        TRANSFORM.HeatAndMassTransfer.DiscritizedModels.BaseClasses.Dimensions_2.GenericHeatGeneration
-        (Q_gen=kinetics.Q_total/(conduction.geometry.nX*conduction.geometry.nY)))
+        TRANSFORM.HeatAndMassTransfer.DiscritizedModels.BaseClasses.Dimensions_2.GenericHeatGeneration (
+         Q_gen=kinetics.Q_total/(conduction.geometry.nX*conduction.geometry.nY)))
     annotation (Placement(transformation(extent={{-82,34},{-62,54}})));
   TRANSFORM.HeatAndMassTransfer.BoundaryConditions.Heat.Adiabatic_multi
     adiabatic(nPorts=conduction.geometry.nY)
@@ -127,7 +125,7 @@ model FlowLoop_Step_12 "Modify hotleg temperature with custom correlation"
   SIadd.Conversions.Models.Conversion conversion(redeclare function convert =
         SIadd.Conversions.Functions.PrefixMultipliers.to_kilo)
     annotation (Placement(transformation(extent={{-32,-102},{-12,-82}})));
-  UserInteraction.Inputs.NumericInputIO numericInputIO
+  TRANSFORM.Utilities.Visualizers.Inputs.NumericInputIO numericInputIO
     annotation (Placement(transformation(extent={{70,70},{90,90}})));
   TRANSFORM.Utilities.ErrorAnalysis.UnitTests unitTests(x={kinetics.Q_total})
     annotation (Placement(transformation(extent={{100,80},{120,100}})));
@@ -159,8 +157,8 @@ equation
     annotation (Line(points={{-71,-92},{-34,-92}}, color={0,0,127}));
   connect(conversion.y, display.u) annotation (Line(points={{-10,-92},{-6,-92},
           {-6,-80},{-1.5,-80}}, color={0,0,127}));
-  connect(conversion.y, graph.u) annotation (Line(points={{-10,-92},{-6,-92},{
-          -6,-72.3077},{33.2571,-72.3077}}, color={0,0,127}));
+  connect(conversion.y, graph.u) annotation (Line(points={{-10,-92},{-6,-92},{-6,-72.3077},{33.2571,-72.3077}},
+                                            color={0,0,127}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-120},{120,
             100}})),
